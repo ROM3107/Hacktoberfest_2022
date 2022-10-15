@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency-Convertor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <style>
+      #spinner:not([hidden]) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #spinner::after {
+        content: "";
+        width: 80px;
+        height: 80px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid #f25a41;
+        border-radius: 100%;
+        will-change: transform;
+        animation: spin 1s infinite linear;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .form-select {
+        width: 100%;
+      
+      }
+      .form-floating {
+        width: 70%;
+      }
+      .placeholder{
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand">Currency-Exchange</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="offcanvas offcanvas-end text-bg-primary"
+            tabindex="-1"
+            id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/silveranon323"
+                    >About Me</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <center>
+      <!-- <input
+        type="number"
+        id="amountentered"
+        required
+        placeholder="Enter the amount"
+      />
+      <br />
+      <br /> -->
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="floatingInput"
+          placeholder="Enter the Amount"
+        />
+        <label for="floatingInput">AMOUNT</label>
+      </div>
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="from"
+          aria-label="Floating label select example"
+       
+        >
+          <option value="AFN">Afghanistan afghani</option>
+          <option value="ALL">Albanian lek</option>
+          <option value="DZD">Algerian dinar</option>
+          <option value="AOR">Angolan kwanza reajustado</option>
+          <option value="ARS">Argentine peso</option>
+          <option value="AMD">Armenian dram</option>
+          <option value="AWG">Aruban guilder</option>
+          <option value="AUD">Australian dollar</option>
+          <option value="AZN">Azerbaijanian new manat</option>
+          <option value="BSD">Bahamian dollar</option>
+          <option value="BHD">Bahraini dinar</option>
+          <option value="BDT">Bangladeshi taka</option>
+          <option value="BBD">Barbados dollar</option>
+          <option value="BYN">Belarusian ruble</option>
+          <option value="BZD">Belize dollar</option>
+          <option value="BMD">Bermudian dollar</option>
+          <option value="BTN">Bhutan ngultrum</option>
+          <option value="BOB">Bolivian boliviano</option>
+          <option value="BWP">Botswana pula</option>
+          <option value="BRL">Brazilian real</option>
+          <option value="GBP">British pound</option>
+          <option value="BND">Brunei dollar</option>
+          <option value="BGN">Bulgarian lev</option>
+          <option value="BIF">Burundi franc</option>
+          <option value="KHR">Cambodian riel</option>
+          <option value="CAD">Canadian dollar</option>
+          <option value="CVE">Cape Verde escudo</option>
+          <option value="KYD">Cayman Islands dollar</option>
+          <option value="XOF">CFA franc BCEAO</option>
+          <option value="XAF">CFA franc BEAC</option>
+          <option value="XPF">CFP franc</option>
+          <option value="CLP">Chilean peso</option>
+          <option value="CNY">Chinese yuan renminbi</option>
+          <option value="COP">Colombian peso</option>
+          <option value="KMF">Comorosfranc</option>
+          <option value="CDF">Congolese franc</option>
+          <option value="CRC">Costa Rican colon</option>
+          <option value="HRK">Croatian kuna</option>
+          <option value="CUP">Cuban peso</option>
+          <option value="CZK">Czech koruna</option>
+          <option value="DKK">Danish krone</option>
+          <option value="DJF">Djibouti franc</option>
+          <option value="DOP">Dominican peso</option>
+          <option value="XCD">East Caribbean dollar</option>
+          <option value="EGP">Egyptian pound</option>
+          <option value="SVC">El Salvador colon</option>
+          <option value="ERN">Eritrean nakfa</option>
+          <option value="EEK">Estonian kroon</option>
+          <option value="ETB">Ethiopian birr</option>
+          <option value="EUR">EU euro</option>
+          <option value="FKP">Falkland Islands pound</option>
+          <option value="FJD">Fiji dollar</option>
+          <option value="GMD">Gambian dalasi</option>
+          <option value="GEL">Georgian lari</option>
+          <option value="GHS">Ghanaian new cedi</option>
+          <option value="GIP">Gibraltar pound</option>
+          <option value="XAU">Gold (ounce)</option>
+          <option value="XFO">Gold franc</option>
+          <option value="GTQ">Guatemalan quetzal</option>
+          <option value="GNF">Guinean franc</option>
+          <option value="GYD">Guyana dollar</option>
+          <option value="HTG">Haitian gourde</option>
+          <option value="HNL">Honduran lempira</option>
+          <option value="HKD">Hong Kong SAR dollar</option>
+          <option value="HUF">Hungarian forint</option>
+          <option value="ISK">Icelandic krona</option>
+          <option value="XDR">IMF special drawing right</option>
+          <option value="INR">Indian rupee</option>
+          <option value="IDR">Indonesian rupiah</option>
+          <option value="IRR">Iranian rial</option>
+          <option value="IQD">Iraqi dinar</option>
+          <option value="ILS">Israeli new shekel</option>
+          <option value="JMD">Jamaican dollar</option>
+          <option value="JPY">Japanese yen</option>
+          <option value="JOD">Jordanian dinar</option>
+          <option value="KZT">Kazakh tenge</option>
+          <option value="KES">Kenyan shilling</option>
+          <option value="KWD">Kuwaiti dinar</option>
+          <option value="KGS">Kyrgyz som</option>
+          <option value="LAK">Lao kip</option>
+          <option value="LVL">Latvian lats</option>
+          <option value="LBP">Lebanese pound</option>
+          <option value="LSL">Lesotho loti</option>
+          <option value="LRD">Liberian dollar</option>
+          <option value="LYD">Libyan dinar</option>
+          <option value="LTL">Lithuanian litas</option>
+          <option value="MOP">Macao SAR pataca</option>
+          <option value="MKD">Macedonian denar</option>
+          <option value="MGA">Malagasy ariary</option>
+          <option value="MWK">Malawi kwacha</option>
+          <option value="MYR">Malaysian ringgit</option>
+          <option value="MVR">Maldivian rufiyaa</option>
+          <option value="MRO">Mauritanian ouguiya</option>
+          <option value="MUR">Mauritius rupee</option>
+          <option value="MXN">Mexican peso</option>
+          <option value="MDL">Moldovan leu</option>
+          <option value="MNT">Mongolian tugrik</option>
+          <option value="MAD">Moroccan dirham</option>
+          <option value="MZN">Mozambique new metical</option>
+          <option value="MMK">Myanmar kyat</option>
+          <option value="NAD">Namibian dollar</option>
+          <option value="NPR">Nepalese rupee</option>
+          <option value="ANG">Netherlands Antillian guilder</option>
+          <option value="NZD">New Zealand dollar</option>
+          <option value="NIO">Nicaraguan cordoba oro</option>
+          <option value="NGN">Nigerian naira</option>
+          <option value="KPW">North Korean won</option>
+          <option value="NOK">Norwegian krone</option>
+          <option value="OMR">Omani rial</option>
+          <option value="PKR">Pakistani rupee</option>
+          <option value="XPD">Palladium (ounce)</option>
+          <option value="PAB">Panamanian balboa</option>
+          <option value="PGK">Papua New Guinea kina</option>
+          <option value="PYG">Paraguayan guarani</option>
+          <option value="PEN">Peruvian nuevo sol</option>
+          <option value="PHP">Philippine peso</option>
+          <option value="XPT">Platinum (ounce)</option>
+          <option value="PLN">Polish zloty</option>
+          <option value="QAR">Qatari rial</option>
+          <option value="RON">Romanian new leu</option>
+          <option value="RUB">Russian ruble</option>
+          <option value="RWF">Rwandan franc</option>
+          <option value="SHP">Saint Helena pound</option>
+          <option value="WST">Samoan tala</option>
+          <option value="STD">Sao Tome and Principe dobra</option>
+          <option value="SAR">Saudi riyal</option>
+          <option value="RSD">Serbian dinar</option>
+          <option value="SCR">Seychelles rupee</option>
+          <option value="SLL">Sierra Leone leone</option>
+          <option value="XAG">Silver (ounce)</option>
+          <option value="SGD">Singapore dollar</option>
+          <option value="SBD">Solomon Islands dollar</option>
+          <option value="SOS">Somali shilling</option>
+          <option value="ZAR">South African rand</option>
+          <option value="KRW">South Korean won</option>
+          <option value="LKR">Sri Lanka rupee</option>
+          <option value="SDG">Sudanese pound</option>
+          <option value="SRD">Suriname dollar</option>
+          <option value="SZL">Swaziland lilangeni</option>
+          <option value="SEK">Swedish krona</option>
+          <option value="CHF">Swiss franc</option>
+          <option value="SYP">Syrian pound</option>
+          <option value="TWD">Taiwan New dollar</option>
+          <option value="TJS">Tajik somoni</option>
+          <option value="TZS">Tanzanian shilling</option>
+          <option value="THB">Thai baht</option>
+          <option value="TOP">Tongan pa'anga</option>
+          <option value="TTD">Trinidad and Tobago dollar</option>
+          <option value="TND">Tunisian dinar</option>
+          <option value="TRY">Turkish lira</option>
+          <option value="TMT">Turkmen new manat</option>
+          <option value="AED">UAE dirham</option>
+          <option value="UGX">Uganda new shilling</option>
+          <option value="XFU">UIC franc</option>
+          <option value="UAH">Ukrainian hryvnia</option>
+          <option value="UYU">Uruguayan peso uruguayo</option>
+          <option value="USD">US dollar</option>
+          <option value="UZS">Uzbekistani sum</option>
+          <option value="VUV">Vanuatu vatu</option>
+          <option value="VEF">Venezuelan bolivar fuerte</option>
+          <option value="VND">Vietnamese dong</option>
+          <option value="YER">Yemeni rial</option>
+          <option value="ZMK">Zambian kwacha</option>
+          <option value="ZWL">Zimbabwe dollar</option>
+        </select>
+        <label for="from">From</label>
+      </div>
+
+ <br>
+
+      <p>
+        <button
+          style="width:30%";
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseWidthExample"
+          aria-expanded="false"
+          aria-controls="collapseWidthExample"
+          onclick="myfunc()"
+        >
+       Convert &#8644;
+        </button>
+      </p>
+      <div style="min-height: 20px">
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 300px">
+            <p id="result"></p>
+          </div>
+        </div>
+      </div>
+      <br>
+   
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="to"
+          aria-label="Floating label select example"
+        >
+          <option value="AFN">Afghanistan afghani</option>
+          <option value="ALL">Albanian lek</option>
+          <option value="DZD">Algerian dinar</option>
+          <option value="AOR">Angolan kwanza reajustado</option>
+          <option value="ARS">Argentine peso</option>
+          <option value="AMD">Armenian dram</option>
+          <option value="AWG">Aruban guilder</option>
+          <option value="AUD">Australian dollar</option>
+          <option value="AZN">Azerbaijanian new manat</option>
+          <option value="BSD">Bahamian dollar</option>
+          <option value="BHD">Bahraini dinar</option>
+          <option value="BDT">Bangladeshi taka</option>
+          <option value="BBD">Barbados dollar</option>
+          <option value="BYN">Belarusian ruble</option>
+          <option value="BZD">Belize dollar</option>
+          <option value="BMD">Bermudian dollar</option>
+          <option value="BTN">Bhutan ngultrum</option>
+          <option value="BOB">Bolivian boliviano</option>
+          <option value="BWP">Botswana pula</option>
+          <option value="BRL">Brazilian real</option>
+          <option value="GBP">British pound</option>
+          <option value="BND">Brunei dollar</option>
+          <option value="BGN">Bulgarian lev</option>
+          <option value="BIF">Burundi franc</option>
+          <option value="KHR">Cambodian riel</option>
+          <option value="CAD">Canadian dollar</option>
+          <option value="CVE">Cape Verde escudo</option>
+          <option value="KYD">Cayman Islands dollar</option>
+          <option value="XOF">CFA franc BCEAO</option>
+          <option value="XAF">CFA franc BEAC</option>
+          <option value="XPF">CFP franc</option>
+          <option value="CLP">Chilean peso</option>
+          <option value="CNY">Chinese yuan renminbi</option>
+          <option value="COP">Colombian peso</option>
+          <option value="KMF">Comorosfranc</option>
+          <option value="CDF">Congolese franc</option>
+          <option value="CRC">Costa Rican colon</option>
+          <option value="HRK">Croatian kuna</option>
+          <option value="CUP">Cuban peso</option>
+          <option value="CZK">Czech koruna</option>
+          <option value="DKK">Danish krone</option>
+          <option value="DJF">Djibouti franc</option>
+          <option value="DOP">Dominican peso</option>
+          <option value="XCD">East Caribbean dollar</option>
+          <option value="EGP">Egyptian pound</option>
+          <option value="SVC">El Salvador colon</option>
+          <option value="ERN">Eritrean nakfa</option>
+          <option value="EEK">Estonian kroon</option>
+          <option value="ETB">Ethiopian birr</option>
+          <option value="EUR">EU euro</option>
+          <option value="FKP">Falkland Islands pound</option>
+          <option value="FJD">Fiji dollar</option>
+          <option value="GMD">Gambian dalasi</option>
+          <option value="GEL">Georgian lari</option>
+          <option value="GHS">Ghanaian new cedi</option>
+          <option value="GIP">Gibraltar pound</option>
+          <option value="XAU">Gold (ounce)</option>
+          <option value="XFO">Gold franc</option>
+          <option value="GTQ">Guatemalan quetzal</option>
+          <option value="GNF">Guinean franc</option>
+          <option value="GYD">Guyana dollar</option>
+          <option value="HTG">Haitian gourde</option>
+          <option value="HNL">Honduran lempira</option>
+          <option value="HKD">Hong Kong SAR dollar</option>
+          <option value="HUF">Hungarian forint</option>
+          <option value="ISK">Icelandic krona</option>
+          <option value="XDR">IMF special drawing right</option>
+          <option value="INR">Indian rupee</option>
+          <option value="IDR">Indonesian rupiah</option>
+          <option value="IRR">Iranian rial</option>
+          <option value="IQD">Iraqi dinar</option>
+          <option value="ILS">Israeli new shekel</option>
+          <option value="JMD">Jamaican dollar</option>
+          <option value="JPY">Japanese yen</option>
+          <option value="JOD">Jordanian dinar</option>
+          <option value="KZT">Kazakh tenge</option>
+          <option value="KES">Kenyan shilling</option>
+          <option value="KWD">Kuwaiti dinar</option>
+          <option value="KGS">Kyrgyz som</option>
+          <option value="LAK">Lao kip</option>
+          <option value="LVL">Latvian lats</option>
+          <option value="LBP">Lebanese pound</option>
+          <option value="LSL">Lesotho loti</option>
+          <option value="LRD">Liberian dollar</option>
+          <option value="LYD">Libyan dinar</option>
+          <option value="LTL">Lithuanian litas</option>
+          <option value="MOP">Macao SAR pataca</option>
+          <option value="MKD">Macedonian denar</option>
+          <option value="MGA">Malagasy ariary</option>
+          <option value="MWK">Malawi kwacha</option>
+          <option value="MYR">Malaysian ringgit</option>
+          <option value="MVR">Maldivian rufiyaa</option>
+          <option value="MRO">Mauritanian ouguiya</option>
+          <option value="MUR">Mauritius rupee</option>
+          <option value="MXN">Mexican peso</option>
+          <option value="MDL">Moldovan leu</option>
+          <option value="MNT">Mongolian tugrik</option>
+          <option value="MAD">Moroccan dirham</option>
+          <option value="MZN">Mozambique new metical</option>
+          <option value="MMK">Myanmar kyat</option>
+          <option value="NAD">Namibian dollar</option>
+          <option value="NPR">Nepalese rupee</option>
+          <option value="ANG">Netherlands Antillian guilder</option>
+          <option value="NZD">New Zealand dollar</option>
+          <option value="NIO">Nicaraguan cordoba oro</option>
+          <option value="NGN">Nigerian naira</option>
+          <option value="KPW">North Korean won</option>
+          <option value="NOK">Norwegian krone</option>
+          <option value="OMR">Omani rial</option>
+          <option value="PKR">Pakistani rupee</option>
+          <option value="XPD">Palladium (ounce)</option>
+          <option value="PAB">Panamanian balboa</option>
+          <option value="PGK">Papua New Guinea kina</option>
+          <option value="PYG">Paraguayan guarani</option>
+          <option value="PEN">Peruvian nuevo sol</option>
+          <option value="PHP">Philippine peso</option>
+          <option value="XPT">Platinum (ounce)</option>
+          <option value="PLN">Polish zloty</option>
+          <option value="QAR">Qatari rial</option>
+          <option value="RON">Romanian new leu</option>
+          <option value="RUB">Russian ruble</option>
+          <option value="RWF">Rwandan franc</option>
+          <option value="SHP">Saint Helena pound</option>
+          <option value="WST">Samoan tala</option>
+          <option value="STD">Sao Tome and Principe dobra</option>
+          <option value="SAR">Saudi riyal</option>
+          <option value="RSD">Serbian dinar</option>
+          <option value="SCR">Seychelles rupee</option>
+          <option value="SLL">Sierra Leone leone</option>
+          <option value="XAG">Silver (ounce)</option>
+          <option value="SGD">Singapore dollar</option>
+          <option value="SBD">Solomon Islands dollar</option>
+          <option value="SOS">Somali shilling</option>
+          <option value="ZAR">South African rand</option>
+          <option value="KRW">South Korean won</option>
+          <option value="LKR">Sri Lanka rupee</option>
+          <option value="SDG">Sudanese pound</option>
+          <option value="SRD">Suriname dollar</option>
+          <option value="SZL">Swaziland lilangeni</option>
+          <option value="SEK">Swedish krona</option>
+          <option value="CHF">Swiss franc</option>
+          <option value="SYP">Syrian pound</option>
+          <option value="TWD">Taiwan New dollar</option>
+          <option value="TJS">Tajik somoni</option>
+          <option value="TZS">Tanzanian shilling</option>
+          <option value="THB">Thai baht</option>
+          <option value="TOP">Tongan pa'anga</option>
+          <option value="TTD">Trinidad and Tobago dollar</option>
+          <option value="TND">Tunisian dinar</option>
+          <option value="TRY">Turkish lira</option>
+          <option value="TMT">Turkmen new manat</option>
+          <option value="AED">UAE dirham</option>
+          <option value="UGX">Uganda new shilling</option>
+          <option value="XFU">UIC franc</option>
+          <option value="UAH">Ukrainian hryvnia</option>
+          <option value="UYU">Uruguayan peso uruguayo</option>
+          <option value="USD">US dollar</option>
+          <option value="UZS">Uzbekistani sum</option>
+          <option value="VUV">Vanuatu vatu</option>
+          <option value="VEF">Venezuelan bolivar fuerte</option>
+          <option value="VND">Vietnamese dong</option>
+          <option value="YER">Yemeni rial</option>
+          <option value="ZMK">Zambian kwacha</option>
+          <option value="ZWL">Zimbabwe dollar</option>
+        </select>
+        <label for="to">To</label>
+      </div>
+ 
+
+      <div hidden id="spinner"></div>
+    </center>
+
+    <script>
+    async function myfunc() {
+  let amountentered = document.getElementById("floatingInput").value;
+  if (!amountentered) {
+    alert("Enter the amount value please");
+    
+  }
+  console.log(amountentered);
+  const spinner = document.getElementById("spinner");
+  let from = document.getElementById("from").value;
+  console.log(from);
+  let to = document.getElementById("to").value;
+  console.log(to);
+  let result = document.getElementById("result");
+  spinner.removeAttribute("hidden");
+  await fetch(
+    `https://v6.exchangerate-api.com/v6/180c17d976708a16bc857bb7/pair/${from}/${to}/${amountentered}`
+  )
+    .then((response) => response.json())
+    .then((json) => {
+      spinner.setAttribute("hidden", "");
+      result.innerHTML = `${amountentered} ${from} = ${json.conversion_result} ${to}`;
+    });
+}
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    
+  </body>
+</html>
